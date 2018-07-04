@@ -41,3 +41,7 @@ if [ ! -z "$NGROK" ] ; then
 fi
 
 /usr/bin/supervisord -n
+
+# start NoMachine NX server
+/etc/NX/nxserver --startup
+
