@@ -53,6 +53,28 @@ COPY supervisor.conf /etc/supervisor/conf.d/
 COPY xsession $HOME/.xsession
 
 
+#################################################################################################################
+#   INITIALIZE R
+#################################################################################################################
+
+# ARG R_BASE_VER=3.4.4
+# ARG R_BASE_VER=3.5.0
+ARG R_BASE_VER=3.5.1
+
+# add to sources lists Michael Rutter's Launchpad repo with R-base 3.5 (RRutter v3.5)
+RUN echo "deb [trusted=yes] http://ppa.launchpad.net/marutter/rrutter3.5/ubuntu xenial main" > /etc/apt/sources.list.d/rrutter3.5_xenial.list
+# RUN echo "deb [trusted=yes] http://ppa.launchpad.net/marutter/rrutter3.5/ubuntu bionic main" > /etc/apt/sources.list.d/rrutter3.5_bionic.list
+
+# add Michael Rutters key
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+
+# Now install R-base[-dev] 3.5.0 from Michael Rutter's Launchpad repo
+RUN apt-get update && apt-get install -y \
+		r-base=${R_BASE_VER}-* \
+		r-base-dev=${R_BASE_VER}-* \
+		r-recommended=${R_BASE_VER}-*
+
+
 ### NoMachine ###
 
 # Goto https://www.nomachine.com/download/download&id=10 and update the latest 
