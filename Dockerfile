@@ -75,6 +75,15 @@ RUN apt-get update && apt-get install -y \
 		r-recommended=${R_BASE_VER}-*
 
 
+# RStudio
+ENV RSTUDIO_VER=1.1.453
+
+RUN wget --quiet -O /tmp/rstudio.deb https://download1.rstudio.org/rstudio-xenial-${RSTUDIO_VER}-amd64.deb && \
+        chmod +x /tmp/rstudio.deb && \
+        apt-get install gdebi-core -y && gdebi -n /tmp/rstudio.deb && \
+        rm -rf /tmp/rstudio.deb
+
+
 ### NoMachine ###
 
 # Goto https://www.nomachine.com/download/download&id=10 and update the latest 
