@@ -26,9 +26,12 @@ RUN apt-get install -y \
         net-tools \
         curl \
         git \
-        pwgen \
         libtasn1-3-bin \
         libglu1-mesa \
+	mc \
+	nano \
+	pwgen \
+	wget \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
