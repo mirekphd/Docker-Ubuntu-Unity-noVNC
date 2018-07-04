@@ -120,5 +120,6 @@ RUN echo "${NX_USER} ALL=(ALL:ALL) NOPASSWD: /etc/NX/nxserver --startup" >> /etc
 # Copy startup script
 COPY startup.sh $HOME
 
-EXPOSE 6080 5901 4040
+EXPOSE 4000
+EXPOSE 6080 5901 4040 
 CMD ["/bin/bash", "/home/ubuntu/startup.sh"]
